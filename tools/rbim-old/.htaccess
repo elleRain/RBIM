@@ -1,0 +1,30 @@
+# Enable rewriting
+RewriteEngine On
+
+# Set the base directory
+RewriteBase /
+
+# Allow direct access to files
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Default page
+DirectoryIndex index.php
+
+# Ensure proper permissions
+<FilesMatch "\.(php|html|css|js|jpg|jpeg|png|gif|svg)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+# Handle 403 errors
+ErrorDocument 403 /index.php
+
+# Prevent directory listing
+Options -Indexes
+
+# Set PHP settings
+<IfModule mod_php7.c>
+    php_value display_errors 0
+    php_value log_errors 1
+</IfModule>

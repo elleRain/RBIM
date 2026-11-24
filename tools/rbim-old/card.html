@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RBIM Admin - Navbar & Sidebar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3498db;
+            --primary-dark: #2980b9;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --info: #00bcd4;
+            --sidebar-bg: #ffffff;
+            --navbar-bg: #ffffff;
+            --main-bg: #f8f9fa;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --border-color: #eaeaea;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
+            --menu-hover: #f5f7fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--main-bg);
+            color: var(--text-dark);
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Sidebar Styles */
+        .sidebar {
+            width: 260px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.03);
+            z-index: 100;
+        }
+        
+        .sidebar-header {
+            padding: 24px 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            height: 70px;
+        }
+        
+        .sidebar-header img {
+            width: 36px;
+            height: 36px;
+        }
+        
+        .sidebar-header h3 {
+            margin-left: 12px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .sidebar-menu {
+            padding: 15px 0;
+        }
+        
+        .sidebar-menu ul {
+            list-style: none;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 5px;
+        }
+        
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 500;
+            border-left: 3px solid transparent;
+        }
+        
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background: var(--menu-hover);
+            border-left: 3px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .sidebar-menu i {
+            margin-right: 12px;
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .menu-label {
+            padding: 10px 20px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-light);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Header Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 25px;
+            background: var(--navbar-bg);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+            height: 70px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-actions {
+            display: flex;
+            margin-right: 20px;
+        }
+        
+        .action-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10px;
+            color: var(--text-light);
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .action-icon:hover {
+            background: var(--menu-hover);
+            color: var(--primary);
+        }
+        
+        .badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .user-menu {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 6px;
+        }
+        
+        .user-menu:hover {
+            background: var(--menu-hover);
+        }
+        
+        .user-info {
+            margin-right: 12px;
+            text-align: right;
+        }
+        
+        .user-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .user-role {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            margin-right: 15px;
+        }
+        
+        /* Demo Content Styles */
+        .demo-content {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .demo-content h1 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        
+        .demo-content p {
+            color: var(--text-light);
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .component-info {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+            max-width: 800px;
+            margin-top: 20px;
+        }
+        
+        .component-info h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        
+        .feature {
+            background: var(--menu-hover);
+            padding: 15px;
+            border-radius: 8px;
+            width: 180px;
+            text-align: center;
+        }
+        
+        .feature i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 70px;
+            }
+            
+            .sidebar-header h3, .sidebar-menu span, .menu-label {
+                display: none;
+            }
+            
+            .sidebar-header {
+                justify-content: center;
+            }
+            
+            .sidebar-menu a {
+                justify-content: center;
+                padding: 15px;
+            }
+            
+            .sidebar-menu i {
+                margin-right: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 0;
+                overflow: hidden;
+                position: fixed;
+                height: 100%;
+            }
+            
+            .header {
+                padding: 0 15px;
+            }
+            
+            .mobile-menu-btn {
+                display: block !important;
+            }
+            
+            .demo-content h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-shield-alt fa-2x" style="color: #3498db;"></i>
+            <h3>RBIM Admin</h3>
+        </div>
+        <div class="sidebar-menu">
+            <div class="menu-label">Main</div>
+            <ul>
+                <li><a href="#" class="active"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+                <li><a href="#"><i class="fas fa-chart-line"></i> <span>Analytics</span></a></li>
+            </ul>
+            
+            <div class="menu-label">Management</div>
+            <ul>
+                <li><a href="#"><i class="fas fa-users"></i> <span>User Management</span></a></li>
+                <li><a href="#"><i class="fas fa-user-tag"></i> <span>Role Management</span></a></li>
+                <li><a href="#"><i class="fas fa-key"></i> <span>Permissions</span></a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> <span>System Settings</span></a></li>
+            </ul>
+            
+            <div class="menu-label">Advanced</div>
+            <ul>
+                <li><a href="#"><i class="fas fa-history"></i> <span>Audit Logs</span></a></li>
+                <li><a href="#"><i class="fas fa-chart-bar"></i> <span>Reports</span></a></li>
+                <li><a href="#"><i class="fas fa-database"></i> <span>Backups</span></a></li>
+                <li><a href="#"><i class="fas fa-question-circle"></i> <span>Help & Support</span></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <div class="header">
+            <div style="display: flex; align-items: center;">
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h2 style="font-weight: 600; color: var(--secondary);">Super Admin Dashboard</h2>
+            </div>
+            <div class="header-right">
+                <div class="header-actions">
+                    <div class="action-icon">
+                        <i class="far fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="action-icon">
+                        <i class="far fa-envelope"></i>
+                        <span class="badge">7</span>
+                    </div>
+                </div>
+                <div class="user-menu">
+                    <div class="user-info">
+                        <div class="user-name">John Doe</div>
+                        <div class="user-role">Super Administrator</div>
+                    </div>
+                    <div class="avatar">JD</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Demo Content -->
+        <div class="demo-content">
+            <h1>RBIM Admin Components</h1>
+            <p>This page showcases the combined navbar and sidebar components for the RBIM Admin Dashboard. These components are fully responsive and include interactive elements.</p>
+            
+            <div class="component-info">
+                <h2>Component Features</h2>
+                <p>Both the navbar and sidebar include the following features:</p>
+                
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Responsive Design</h3>
+                        <p>Adapts to all screen sizes</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-palette"></i>
+                        <h3>CSS Variables</h3>
+                        <p>Easy theming system</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-bell"></i>
+                        <h3>Notifications</h3>
+                        <p>Badges for alerts</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-user-circle"></i>
+                        <h3>User Profile</h3>
+                        <p>With role display</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.querySelector('.sidebar');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                if (window.innerWidth < 768) {
+                    if (sidebar.style.width === '0px' || !sidebar.style.width) {
+                        sidebar.style.width = '260px';
+                    } else {
+                        sidebar.style.width = '0px';
+                    }
+                }
+            });
+            
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 768) {
+                    sidebar.style.width = '260px';
+                } else {
+                    sidebar.style.width = '0px';
+                }
+            });
+            
+            if (window.innerWidth < 768) {
+                sidebar.style.width = '0px';
+            }
+        });
+    </script>
+</body>
+</html>

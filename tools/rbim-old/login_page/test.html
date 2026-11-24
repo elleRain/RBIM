@@ -1,0 +1,8 @@
+cd /RBIM
+
+# create a simple test page
+echo "Server Test OK" | sudo tee test.html
+
+# make sure permissions are fine
+sudo chmod 644 test.html
+sudo chown u52083:u52083 test.html   # adjust owner/group if needed

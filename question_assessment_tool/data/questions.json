@@ -1,0 +1,985 @@
+{
+    "version": 3,
+    "source": "RBIM-Tool-Updated.docx",
+    "updated_at": "2026-08-03T06:50:45+00:00",
+    "sections": [
+        {
+            "id": "demographic_characteristics",
+            "title": "Demographic Characteristics",
+            "description": "Personal information, age, gender, education, etc.",
+            "icon": "user",
+            "questions": [
+                {
+                    "id": "q1_name",
+                    "key": "q1_name",
+                    "label": "Q1 Name",
+                    "type": "text",
+                    "required": true,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q2_relationship",
+                    "key": "q2_relationship",
+                    "label": "Q2 Relationship to Household Head",
+                    "type": "select",
+                    "required": true,
+                    "enabled": true,
+                    "options": [
+                        "01 = Head",
+                        "02 = Spouse",
+                        "03 = Son",
+                        "04 = Daughter",
+                        "05 = Stepson",
+                        "06 = Stepdaughter",
+                        "07 = Son-in-law",
+                        "08 = Daughter-in-law",
+                        "09 = Grandson",
+                        "10 = Granddaughter",
+                        "11 = Father",
+                        "12 = Mother",
+                        "13 = Brother",
+                        "14 = Sister",
+                        "15 = Uncle",
+                        "16 = Aunt",
+                        "17 = Nephew",
+                        "18 = Niece",
+                        "19 = Other relative",
+                        "20 = Non-relative",
+                        "21 = Boarder",
+                        "22 = Domestic helper"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q3_sex",
+                    "key": "q3_sex",
+                    "label": "Q3 Sex",
+                    "type": "select",
+                    "required": true,
+                    "enabled": true,
+                    "options": [
+                        "1 = Male",
+                        "2 = Female"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q4_age",
+                    "key": "q4_age",
+                    "label": "Q4 Age",
+                    "type": "number",
+                    "required": true,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q5_date_of_birth",
+                    "key": "q5_date_of_birth",
+                    "label": "Q5 Date of Birth",
+                    "type": "date",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q6_place_of_birth",
+                    "key": "q6_place_of_birth",
+                    "label": "Q6 Place of Birth",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q7_nationality",
+                    "key": "q7_nationality",
+                    "label": "Q7 Nationality",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q8_marital_status",
+                    "key": "q8_marital_status",
+                    "label": "Q8 Marital Status",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "1 = Single",
+                        "2 = Married",
+                        "3 = Living-in",
+                        "4 = Widowed",
+                        "5 = Separated",
+                        "6 = Annulled",
+                        "7 = Unknown"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q9_religion",
+                    "key": "q9_religion",
+                    "label": "Q9 Religion",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q10_ethnicity",
+                    "key": "q10_ethnicity",
+                    "label": "Q10 Ethnicity",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q11_highest_education",
+                    "key": "q11_highest_education",
+                    "label": "Q11 Highest Level of Education Completed",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "01 = No education / Not applicable",
+                        "02 = Pre-school",
+                        "03 = Elementary graduate",
+                        "04 = Elementary level",
+                        "05 = High school graduate",
+                        "06 = Junior HS level",
+                        "07 = Junior HS graduate",
+                        "08 = Senior HS level",
+                        "09 = Senior HS graduate",
+                        "10 = Vocational/Tech",
+                        "11 = College level",
+                        "12 = College graduate",
+                        "13 = Post-graduate",
+                        "14 = Master's Graduate",
+                        "15 = Doctorate Graduate"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q12_currently_enrolled",
+                    "key": "q12_currently_enrolled",
+                    "label": "Q12 Currently Enrolled",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "1 = Yes, public",
+                        "2 = Yes, private",
+                        "3 = No"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q13_school_level",
+                    "key": "q13_school_level",
+                    "label": "Q13 School Level",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "1 = Pre-school",
+                        "2 = Elementary",
+                        "3 = Junior High School",
+                        "4 = Senior High School",
+                        "5 = Vocational/Technical",
+                        "6 = College/University"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q14_place_of_school",
+                    "key": "q14_place_of_school",
+                    "label": "Q14 Place of School",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                }
+            ]
+        },
+        {
+            "id": "economic_activity",
+            "title": "Economic Activity",
+            "description": "Employment, income, occupation, work status",
+            "icon": "briefcase",
+            "questions": [
+                {
+                    "id": "q15_monthly_income",
+                    "key": "q15_monthly_income",
+                    "label": "Q15 Monthly Income",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q16a_source_of_income",
+                    "key": "q16a_source_of_income",
+                    "label": "Q16a Source of Income",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "01 = Employment",
+                        "02 = Business",
+                        "03 = Remittance",
+                        "04 = Investments",
+                        "05 = Others"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q16b_occupation",
+                    "key": "q16b_occupation",
+                    "label": "Q16b Occupation / Position",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q17_work_status",
+                    "key": "q17_work_status",
+                    "label": "Q17 Status of Work",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "1 = Permanent Work",
+                        "2 = Casual Work",
+                        "3 = Contractual Work",
+                        "4 = Individually Owned Business",
+                        "5 = Shared/Partnership Business",
+                        "6 = Corporate Business"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q18_place_of_work",
+                    "key": "q18_place_of_work",
+                    "label": "Q18 Place of Work",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                }
+            ]
+        },
+        {
+            "id": "health_information",
+            "title": "Health Information",
+            "description": "Health insurance, disability, facility visits, and medical status",
+            "icon": "heart",
+            "questions": [
+                {
+                    "id": "q26_health_insurance",
+                    "key": "q26_health_insurance",
+                    "label": "Q26 Health Insurance",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "1 = PhilHealth paying member",
+                        "2 = PhilHealth dependent of paying member",
+                        "3 = PhilHealth indigent member",
+                        "4 = PhilHealth dependent of indigent member",
+                        "5 = Others / None"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q26a_nutritional_status",
+                    "key": "q26a_nutritional_status",
+                    "label": "Q26a Nutritional Status",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q27_facility_visited",
+                    "key": "q27_facility_visited",
+                    "label": "Q27 Facility Visited in Past 12 Months",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "1 = Government hospital",
+                        "2 = RHU/Health center",
+                        "3 = Brgy. Health Station",
+                        "4 = Private hospital",
+                        "5 = Private clinic",
+                        "6 = Others"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q28_reason_for_visit",
+                    "key": "q28_reason_for_visit",
+                    "label": "Q28 Reason for Visit in Health Facility",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "1 = Sick/Injured",
+                        "2 = Prenatal/Postnatal",
+                        "3 = Gave birth",
+                        "4 = Dental",
+                        "5 = Medical check-up",
+                        "6 = Others"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q29_disability",
+                    "key": "q29_disability",
+                    "label": "Q29 Disability",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "None",
+                        "1 = Sensory",
+                        "2 = Physical",
+                        "3 = Mental",
+                        "4 = Others"
+                    ],
+                    "help_text": ""
+                }
+            ]
+        },
+        {
+            "id": "maternal_child_health",
+            "title": "Maternal & Child Health",
+            "description": "Pregnancy, delivery, immunization, family planning",
+            "icon": "stethoscope",
+            "questions": [
+                {
+                    "id": "q19_place_of_delivery",
+                    "key": "q19_place_of_delivery",
+                    "label": "Q19 Place of Delivery",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "1 = Public hospital",
+                        "2 = Private hospital",
+                        "3 = Brgy. Health Station",
+                        "4 = Home",
+                        "5 = Others"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q20_birth_attendant",
+                    "key": "q20_birth_attendant",
+                    "label": "Q20 Person Who Assisted in the Delivery",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "1 = Doctor",
+                        "2 = Nurse",
+                        "3 = Midwife",
+                        "4 = Hilot",
+                        "5 = Others"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q21_immunization",
+                    "key": "q21_immunization",
+                    "label": "Q21 Immunization (Last Vaccine Received)",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q22_living_children",
+                    "key": "q22_living_children",
+                    "label": "Q22 Living Children",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q23_fp_use",
+                    "key": "q23_fp_use",
+                    "label": "Q23 Family Planning (FP) Use",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "01 = Female sterilization/Ligation",
+                        "02 = Male sterilization/Vasectomy",
+                        "03 = IUD",
+                        "04 = Injectables",
+                        "05 = Pills",
+                        "06 = Condom",
+                        "07 = Natural / Rhythm",
+                        "08 = Withdrawal",
+                        "09 = None",
+                        "10 = Others"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q24_source_of_fp",
+                    "key": "q24_source_of_fp",
+                    "label": "Q24 Source of FP Method",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "1 = Government hospital",
+                        "2 = RHU/Health center",
+                        "3 = Brgy. Health Station",
+                        "4 = Private hospital/clinic",
+                        "5 = Pharmacy",
+                        "6 = Others"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q25_intention_to_use_fp",
+                    "key": "q25_intention_to_use_fp",
+                    "label": "Q25 Intention to Use FP",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "1 = Yes",
+                        "2 = No",
+                        "3 = Already using",
+                        "4 = Not applicable"
+                    ],
+                    "help_text": ""
+                }
+            ]
+        },
+        {
+            "id": "socio_civic_migration",
+            "title": "Socio-Civic Participation & Migration",
+            "description": "Voter registration, residency, transfer, CTC, skills training",
+            "icon": "map",
+            "questions": [
+                {
+                    "id": "q30_solo_parent",
+                    "key": "q30_solo_parent",
+                    "label": "Q30 Solo Parent",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "1 = Yes",
+                        "2 = No"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q31_registered_senior",
+                    "key": "q31_registered_senior",
+                    "label": "Q31 Registered Senior Citizen",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "1 = Yes",
+                        "2 = No",
+                        "99 = Not applicable"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q32_registered_voter",
+                    "key": "q32_registered_voter",
+                    "label": "Q32 Registered Voter",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "1 = Yes",
+                        "2 = No",
+                        "99 = Not applicable"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q33_previous_residence_5yrs",
+                    "key": "q33_previous_residence_5yrs",
+                    "label": "Q33 Previous Residence (5 years ago)",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q34_previous_residence",
+                    "key": "q34_previous_residence",
+                    "label": "Q34 Previous Residence",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q35_length_of_stay",
+                    "key": "q35_length_of_stay",
+                    "label": "Q35 Length of Stay in the Barangay",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q36_type_of_resident",
+                    "key": "q36_type_of_resident",
+                    "label": "Q36 Type of Resident",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "1 = Non-Migrant (Length of Stay is over 5 years)",
+                        "2 = Migrant (Length of Stay is between 6 months and 1 day to 5 years)"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q37_date_of_transfer",
+                    "key": "q37_date_of_transfer",
+                    "label": "Q37 Date of Transfer",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q38a_reason_leaving",
+                    "key": "q38a_reason_leaving",
+                    "label": "Q38A Reason for Leaving Previous Residence (1)",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q38b_reason_leaving",
+                    "key": "q38b_reason_leaving",
+                    "label": "Q38B Reason for Leaving Previous Residence (2)",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q38c_reason_leaving",
+                    "key": "q38c_reason_leaving",
+                    "label": "Q38C Reason for Leaving Previous Residence (3)",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q39_return_previous",
+                    "key": "q39_return_previous",
+                    "label": "Q39 Return to Previous Residence",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q40a_reason_transferring",
+                    "key": "q40a_reason_transferring",
+                    "label": "Q40A Reason for Transferring in this Barangay (1)",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q40b_reason_transferring",
+                    "key": "q40b_reason_transferring",
+                    "label": "Q40B Reason for Transferring in this Barangay (2)",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q40c_reason_transferring",
+                    "key": "q40c_reason_transferring",
+                    "label": "Q40C Reason for Transferring in this Barangay (3)",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q41_duration_of_stay",
+                    "key": "q41_duration_of_stay",
+                    "label": "Q41 Duration of Stay in Current Barangay",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q42a_ctc_possession",
+                    "key": "q42a_ctc_possession",
+                    "label": "Q42A CTC Information (Possession)",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "1 = Yes",
+                        "2 = No",
+                        "99 = Not applicable"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q42b_ctc_issued_in_barangay",
+                    "key": "q42b_ctc_issued_in_barangay",
+                    "label": "Q42B CTC Information (Issued in Barangay)",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "1 = Yes",
+                        "2 = No",
+                        "99 = Not applicable"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q43_skills_training",
+                    "key": "q43_skills_training",
+                    "label": "Q43 Skills Development Training Interest",
+                    "type": "textarea",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q44_skills",
+                    "key": "q44_skills",
+                    "label": "Q44 Skills",
+                    "type": "textarea",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                }
+            ]
+        },
+        {
+            "id": "housing_environment",
+            "title": "Housing & Environment",
+            "description": "Housing ownership, water source, toilet facilities, building materials",
+            "icon": "home",
+            "questions": [
+                {
+                    "id": "q45_housing_tenure",
+                    "key": "q45_housing_tenure",
+                    "label": "Q45 Housing Unit Tenure",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "Owned/being amortized",
+                        "Rented",
+                        "Rent-free with consent of owner",
+                        "Rent-free without consent of owner"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q46_lot_tenure",
+                    "key": "q46_lot_tenure",
+                    "label": "Q46 Lot Tenure",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "Owned/being amortized",
+                        "Rented",
+                        "Rent-free with consent of owner",
+                        "Rent-free without consent of owner"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q47_fuel_for_lighting",
+                    "key": "q47_fuel_for_lighting",
+                    "label": "Q47 Fuel for Lighting",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q48_fuel_for_cooking",
+                    "key": "q48_fuel_for_cooking",
+                    "label": "Q48 Fuel for Cooking",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q49_drinking_water_source",
+                    "key": "q49_drinking_water_source",
+                    "label": "Q49 Main Source of Drinking Water",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "01 = Lake, river, rain, others",
+                        "02 = Dug well",
+                        "03 = Unprotected spring",
+                        "04 = Protected spring",
+                        "05 = Peddler",
+                        "06 = Tubed/Piped shallow well",
+                        "07 = Shared, tubed/piped deep well",
+                        "08 = Own use, tubed/piped deep well",
+                        "09 = Shared, faucet community water system",
+                        "10 = Own use, faucet community water system",
+                        "11 = Bottled water",
+                        "12 = Others, please specify"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q50a_garbage_disposal",
+                    "key": "q50a_garbage_disposal",
+                    "label": "Q50a Kitchen Garbage Disposal Method",
+                    "type": "text",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q50b_garbage_segregation",
+                    "key": "q50b_garbage_segregation",
+                    "label": "Q50b Garbage Segregation",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "1 = Yes",
+                        "2 = No"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q51_toilet_facility",
+                    "key": "q51_toilet_facility",
+                    "label": "Q51 Toilet Facility",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "None",
+                        "Open pit",
+                        "Closed pit",
+                        "Water-sealed, other depository, shared",
+                        "Water-sealed, other depository, exclusive",
+                        "Water-sealed, sewer septic tank, shared",
+                        "Water-sealed, sewer septic tank, exclusive",
+                        "Others, specify"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q52_building_type",
+                    "key": "q52_building_type",
+                    "label": "Q52 Type of Building/House",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "Single house",
+                        "Duplex",
+                        "Multi-unit residential (three units or more)",
+                        "Commercial/industrial/agricultural",
+                        "Institutional living quarter (hotel, hospital)",
+                        "Other housing units (boat, cave, others)"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q53_outer_wall_material",
+                    "key": "q53_outer_wall_material",
+                    "label": "Q53 Construction Materials of the Outer Wall",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "No walls",
+                        "Makeshift/salvaged/improvised materials",
+                        "Glass",
+                        "Asbestos",
+                        "Bamboo/Sawali/Cogon/Nipa",
+                        "Galvanized iron/aluminum",
+                        "Half concrete/brick/stone and half wood",
+                        "Wood",
+                        "Concrete/brick/stone",
+                        "Others, please specify"
+                    ],
+                    "help_text": ""
+                }
+            ]
+        },
+        {
+            "id": "mortality_community_needs",
+            "title": "Mortality & Community Needs",
+            "description": "Deaths, common diseases, urgent needs, barangay help",
+            "icon": "archive",
+            "questions": [
+                {
+                    "id": "q54_household_death",
+                    "key": "q54_household_death",
+                    "label": "Q54 Has any member of the household died in the past 12 months? If yes, age at death and cause?",
+                    "type": "textarea",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q55_child_death",
+                    "key": "q55_child_death",
+                    "label": "Q55 Do you have a child HH member below 5 years old who died in the past 12 months? Age and cause?",
+                    "type": "textarea",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q56_common_diseases",
+                    "key": "q56_common_diseases",
+                    "label": "Q56 What are the common diseases that cause death in this barangay?",
+                    "type": "textarea",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q57_primary_needs",
+                    "key": "q57_primary_needs",
+                    "label": "Q57 What do you think are the primary needs of this barangay?",
+                    "type": "textarea",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q58_future_residence",
+                    "key": "q58_future_residence",
+                    "label": "Q58 Where does your household intend to stay five years from now?",
+                    "type": "textarea",
+                    "required": false,
+                    "enabled": true,
+                    "options": [],
+                    "help_text": ""
+                },
+                {
+                    "id": "q59_hunger_experience",
+                    "key": "q59_hunger_experience",
+                    "label": "Q59 Did anyone in your family ever experience hunger?",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "1 = Yes",
+                        "2 = No"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q60_cannot_read",
+                    "key": "q60_cannot_read",
+                    "label": "Q60 Do you have a family member ages 8 years old and above who can't read?",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "1 = Yes",
+                        "2 = No"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q61_evacuation_center",
+                    "key": "q61_evacuation_center",
+                    "label": "Q61 Do you know where the evacuation center in your area is?",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "1 = Yes",
+                        "2 = No"
+                    ],
+                    "help_text": ""
+                },
+                {
+                    "id": "q62_emergency_kit",
+                    "key": "q62_emergency_kit",
+                    "label": "Q62 Do you have an emergency kit/bag in your household?",
+                    "type": "select",
+                    "required": false,
+                    "enabled": true,
+                    "options": [
+                        "1 = Yes",
+                        "2 = No"
+                    ],
+                    "help_text": ""
+                }
+            ]
+        }
+    ]
+}

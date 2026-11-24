@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangay Demographic Report - RBIM Super Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), #1a2530);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, var(--secondary), #2980b9);
+            color: white;
+            border-radius: 10px 10px 0 0 !important;
+            font-weight: 600;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+            height: 100%;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: var(--dark);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .stat-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-bottom: 10px;
+        }
+        
+        .breadcrumb {
+            background: transparent;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        
+        .back-button {
+            background: linear-gradient(135deg, var(--secondary), #2980b9);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .badge-status {
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .table-responsive {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        .table th {
+            background: linear-gradient(135deg, var(--primary), #1a2530);
+            color: white;
+            padding: 12px 15px;
+        }
+        
+        .table td {
+            padding: 12px 15px;
+            vertical-align: middle;
+        }
+        
+        .action-buttons .btn {
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .action-buttons .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .summary-highlights {
+            background: linear-gradient(135deg, #e8f4fc, #cce5ff);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* NEW: Vertical Fast Facts Sidebar Styles */
+        .main-content {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .content-primary {
+            flex: 1;
+        }
+        
+        .fast-facts-sidebar {
+            width: 320px;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, #fff, #f8f9fa);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--secondary);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .fast-facts-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .fast-facts-header i {
+            font-size: 1.8rem;
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .fact-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            transition: transform 0.2s;
+            margin-bottom: 12px;
+        }
+        
+        .fact-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .fact-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .fact-icon i {
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+        
+        .fact-content {
+            flex-grow: 1;
+        }
+        
+        .fact-title {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+        
+        .fact-value {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .fast-facts-sidebar {
+                width: 100%;
+                position: static;
+            }
+        }
+        
+        /* Improved header styles */
+        .header-container {
+            background: linear-gradient(135deg, var(--primary), #1a2530);
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header-content {
+            padding: 25px 30px;
+            position: relative;
+        }
+        
+        .header-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 8px 15px;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .header-title {
+            font-weight: 700;
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .header-subtitle {
+            font-weight: 400;
+            opacity: 0.85;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+        
+        .header-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        
+        .breadcrumb-container {
+            background: rgba(236, 240, 241, 0.7);
+            padding: 12px 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 1.8rem;
+            }
+            
+            .header-content {
+                padding: 20px;
+            }
+            
+            .header-badge {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-bottom: 15px;
+                align-self: flex-start;
+            }
+            
+            .header-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Improved Header -->
+        <div class="header-container">
+            <div class="header-content d-flex flex-column">
+                <span class="header-badge">
+                    <i class="bi bi-check-circle"></i> Active Barangay
+                </span>
+                
+                <h1 class="header-title">
+                    <i class="bi bi-house-door"></i> Barangay Demographic Report
+                </h1>
+                
+                <p class="header-subtitle">RBIM Super Admin Dashboard - Bago City</p>
+                
+                <div class="header-meta">
+                    <div class="meta-item">
+                        <i class="bi bi-people"></i>
+                        <span>1,247 Residents</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="bi bi-house"></i>
+                        <span>328 Households</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="bi bi-calendar-check"></i>
+                        <span>Last updated: October 28, 2023</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="breadcrumb-container">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#"><i class="bi bi-house"></i> Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="#"><i class="bi bi-list-ul"></i> Barangays</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><i class="bi bi-bar-chart"></i> Bacoly Mortilla Demographic Report</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        
+        <button class="back-button">
+            <i class="bi bi-arrow-left me-2"></i> Back to Barangay List
+        </button>
+        
+        <div class="main-content">
+            <div class="content-primary">
+                <!-- Barangay Info -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2><i class="bi bi-geo-alt"></i> Bacoly Mortilla</h2>
+                    <div>
+                        <span class="badge bg-primary me-2"><i class="bi bi-people"></i> 1,247 Residents</span>
+                        <span class="badge bg-info"><i class="bi bi-house"></i> 328 Households</span>
+                    </div>
+                </div>
+                
+                <!-- Summary Stats -->
+                <div class="row mb-4">
+                    <div class="col-md-3 mb-3">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="bi bi-person"></i>
+                            </div>
+                            <div class="stat-number">1,247</div>
+                            <div class="stat-label">Total Population</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="bi bi-house"></i>
+                            </div>
+                            <div class="stat-number">328</div>
+                            <div class="stat-label">Total Households</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="bi bi-check-square"></i>
+                            </div>
+                            <div class="stat-number">892</div>
+                            <div class="stat-label">Registered Voters</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="bi bi-activity"></i>
+                            </div>
+                            <div class="stat-number">127</div>
+                            <div class="stat-label">Senior Citizens</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Summary Highlights -->
+                <div class="summary-highlights">
+                    <h4 class="section-title"><i class="bi bi-lightbulb"></i> Key Insights</h4>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><i class="bi bi-arrow-up-right text-success"></i> <strong>Population Growth:</strong> +3.2% from last year</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><i class="bi bi-gender-male text-primary"></i> <i class="bi bi-gender-female text-danger"></i> <strong>Gender Ratio:</strong> 49.8% Male, 50.2% Female</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><i class="bi bi-house-up text-warning"></i> <strong>Average Household Size:</strong> 3.8 persons per household</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Charts Row -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header"><i class="bi bi-bar-chart"></i> Population by Age Group</div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="ageGroupChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header"><i class="bi bi-pie-chart"></i> Gender Distribution</div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="genderChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional Charts Row -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header"><i class="bi bi-venn"></i> Civil Status Distribution</div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="civilStatusChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header"><i class="bi bi-grid-3x3"></i> Population by Purok</div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="purokChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Data Tables -->
+                <div class="card mb-4">
+                    <div class="card-header"><i class="bi bi-table"></i> Detailed Population Statistics by Purok</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Purok</th>
+                                        <th>Households</th>
+                                        <th>Population</th>
+                                        <th>Male</th>
+                                        <th>Female</th>
+                                        <th>Voters</th>
+                                        <th>Seniors</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><i class="bi bi-geo-alt"></i> Purok 1</td>
+                                        <td>45</td>
+                                        <td>172</td>
+                                        <td>85</td>
+                                        <td>87</td>
+                                        <td>124</td>
+                                        <td>18</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="bi bi-geo-alt"></i> Purok 2</td>
+                                        <td>38</td>
+                                        <极>148</td>
+                                        <td>72</td>
+                                        <td>76</td>
+                                        <td>105</td>
+                                        <td>15</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="bi bi-geo-alt"></i> Purok 3</td>
+                                        <td>52</td>
+                                        <td>195</td>
+                                        <td>98</td>
+                                        <td>97</td>
+                                        <td>142</td>
+                                        <td>22</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="bi bi-geo-alt"></i> Purok 4</td>
+                                        <td>67</td>
+                                        <td>251</td>
+                                        <td>125</td>
+                                        <td>126</td>
+                                        <td>183</td>
+                                        <td>28</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="bi bi-geo-alt"></i> Purok 5</td>
+                                        <td>58</td>
+                                        <td>218</td>
+                                        <td>110</td>
+                                        <td>108</td>
+                                        <td>158</td>
+                                        <td>24</td>
+                                    </tr>
+                                    <tr>
+                                        <td><极 class="bi bi-geo-alt"></i> Purok 6</td>
+                                        <td>42</td>
+                                        <td>163</td>
+                                        <td>82</td>
+                                        <td>81</td>
+                                        <td>120</td>
+                                        <td>20</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="bi bi-geo-alt"></i> Purok 7</td>
+                                        <td>26</td>
+                                        <td>100</td>
+                                        <td>50</td>
+                                        <td>50</td>
+                                        <td>70</td>
+                                        <td>10</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr class="table-primary fw-bold">
+                                        <td>Total</td>
+                                        <td>328</td>
+                                        <td>1,247</td>
+                                        <td>622</td>
+                                        <td>625</td>
+                                        <td>892</极>
+                                        <td>127</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Report Actions -->
+                <div class="action-buttons d-flex justify-content-end mb-5">
+                    <button class="btn btn-secondary me-2">
+                        <i class="bi bi-download me-2"></i> Export as PDF
+                    </button>
+                    <button class="btn btn-primary me-2">
+                        <i class="bi bi-file-earmark-excel me-2"></i> Export as Excel
+                    </button>
+                    <button class="btn btn-success">
+                        <i class="bi bi-printer me-2"></i> Print Report
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Vertical Fast Facts Sidebar (Total Population and Total Households removed) -->
+            <div class="fast-facts-sidebar">
+                <div class="fast-facts-header">
+                    <i class="bi bi-lightning-charge"></i>
+                    <h3 class="mb-0">Fast Facts</h3>
+                </div>
+                <div class="fact-item">
+                    <div class="fact-icon">
+                        <i class="bi bi-person-check"></i>
+                    </div>
+                    <div class="fact-content">
+                        <div class="fact-title">Registered Voters</div>
+                        <div class="fact-value">892</div>
+                    </div>
+                </div>
+                <div class="fact-item">
+                    <div class="fact-icon">
+                        <i class="bi bi-person-heart"></i>
+                    </div>
+                    <div class="fact-content">
+                        <div class="fact-title">Senior Citizens</div>
+                        <div class="fact-value">127</div>
+                    </div>
+                </div>
+                <div class="fact-item">
+                    <div class="fact-icon">
+                        <i class="bi bi-gender-male"></i>
+                    </div>
+                    <div class="fact-content">
+                        <div class="fact-title">Male Population</div>
+                        <div class="fact-value">622 (49.8%)</div>
+                    </div>
+                </div>
+                <div class="fact-item">
+                    <div class="fact-icon">
+                        <i class="bi bi-gender-female"></i>
+                    </div>
+                    <div class="fact-content">
+                        <div class="fact-title">Female Population</div>
+                        <div class="fact-value">625 (50.2%)</div>
+                    </div>
+                </div>
+                <div class="fact-item">
+                    <div class="fact-icon">
+                        <i class="bi bi-house-door"></i>
+                    </div>
+                    <div class="fact-content">
+                        <div class="fact-title">Average Household Size</极>
+                        <div class="fact-value">3.8 persons</div>
+                    </div>
+                </div>
+                <div class="fact-item">
+                    <div class="fact-icon">
+                        <i class="bi bi-graph-up-arrow"></i>
+                    </div>
+                    <div class="fact-content">
+                        <div class="fact-title">Population Growth</div>
+                        <div class="fact-value">+3.2% from last year</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Age Group Chart
+            const ageCtx = document.getElementById('ageGroupChart').getContext('2d');
+            const ageChart = new Chart(ageCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['0-17', '18-35', '36-59', '60+'],
+                    datasets: [{
+                        label: 'Population by Age',
+                        data: [312, 398, 410, 127],
+                        backgroundColor: [
+                            '#3498db',
+                            '#2ecc71',
+                            '#f39c12',
+                            '#e74c3c'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                drawBorder: false
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Gender Chart
+            const genderCtx = document.getElementById('genderChart').getContext('2d');
+            const genderChart = new Chart(genderCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Male', 'Female'],
+                    datasets: [{
+                        data: [622, 625],
+                        backgroundColor: [
+                            '#3498db',
+                            '#e74c3c'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+            
+            // Civil Status Chart
+            const civilCtx = document.getElementById('civilStatusChart').getContext('2d');
+            const civilChart = new Chart(civilCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Single', 'Married', 'Widowed', 'Divorced'],
+                    datasets: [{
+                        data: [445, 672, 85, 45],
+                        backgroundColor: [
+                            '#3498db',
+                            '#2ecc71',
+                            '#f39c12',
+                            '#e74c3c'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspect极Ratio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+            
+            // Purok Chart
+            const purokCtx = document.getElementById('purokChart').getContext('2d');
+            const purokChart = new Chart(purokCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Purok 1', 'Purok 2', 'Purok 3', 'Purok 4', 'Purok 5', 'Purok 6', 'Purok 7'],
+                    datasets: [{
+                        label: 'Population',
+                        data: [极, 148, 195, 251, 218, 163, 100],
+                        backgroundColor: '#3498db',
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                drawBorder: false
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
