@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">RBIM</string>
+    <string name="landing_tagline">Household Registry</string>
+    <string name="landing_subtitle">Register households, review saved records, and keep your data in sync.</string>
+    <string name="action_register_household">Register Household</string>
+    <string name="action_view_saved">View Saved Household</string>
+    <string name="action_sync_online">Sync Online</string>
+</resources>

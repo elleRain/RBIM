@@ -1,5 +1,6 @@
-# Only the RBIM project is tracked; everything else in htdocs is ignored
+# Only the RBIM project and Android app are tracked; everything else in htdocs is ignored
 /*
 !/.gitignore
 !/README.md
 !/RBIM/
+!/Android/
